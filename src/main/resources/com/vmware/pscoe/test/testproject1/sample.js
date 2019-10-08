@@ -5,5 +5,6 @@
  * @returns {number} - describe the return type as well
  */
 (function (x, y) {
+    //test comment
     return x + y;
 });
