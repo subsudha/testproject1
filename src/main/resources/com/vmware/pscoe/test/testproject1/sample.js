@@ -5,6 +5,6 @@
  * @returns {number} - describe the return type as well
  */
 (function (x, y) {
-    //test continuous integration and continuous deployment
+    //test CICD - test1
     return x + y;
 });
