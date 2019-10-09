@@ -5,6 +5,6 @@
  * @returns {number} - describe the return type as well
  */
 (function (x, y) {
-    //test comment
+    //test continuous integration
     return x + y;
 });
