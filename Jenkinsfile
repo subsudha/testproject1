@@ -1,13 +1,8 @@
-node {
-    def mvnHome
-    stage('Preparation') {
-        echo 'Hello World'  
-    }
-    stage ('SCM') {
-        checkout scm
-    }
+node('docker') {
+    checkout scm
     stage('Build') {
-        mvn clean package
+        docker.image('maven:3.3.3').inside {
+            sh 'mvn --version'
+        }
     }
-
 }
