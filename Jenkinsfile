@@ -3,7 +3,7 @@ node {
     stage('Preparation') {
         // Get the Maven tool.     
         mvnHome = tool 'Maven'
-        echo '${mvnHome}'
+        echo ${mvnHome}
         echo 'Hello World'
         //sh "'${mvnHome}//bin//mvn' -version"
     }
