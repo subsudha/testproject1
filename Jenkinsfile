@@ -3,7 +3,9 @@ node {
     stage('Preparation') {
         // Get the Maven tool.     
         mvnHome = tool 'Maven'
-        sh "'${mvnHome}//bin//mvn' -version"
+        echo '${mvnHome}'
+        echo 'Hello World'
+        //sh "'${mvnHome}//bin//mvn' -version"
     }
     stage ('SCM') {
         checkout scm
