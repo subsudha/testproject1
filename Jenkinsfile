@@ -7,7 +7,7 @@ node {
         checkout scm
     }
     stage('Build') {
-        sh "'mvn' --settings C://Users//subins//.m2//settings.xml clean package -Pbundle -DskipTests"
+        sh "mvn --settings C://Users//subins//.m2//settings.xml clean package -Pbundle -DskipTests"
     }
 
     stage("Archive") {
