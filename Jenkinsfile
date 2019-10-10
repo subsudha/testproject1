@@ -2,7 +2,7 @@ node {
     def mvnHome
     stage('Preparation') {
         // Get the Maven tool.     
-        mvnHome = tool 'Maven'
+        mvnHome = 'C:\apache-maven-3.6.2\bin'
         sh "'${mvnHome}/bin/mvn' -version"
     }
     stage ('SCM') {
