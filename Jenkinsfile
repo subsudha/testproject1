@@ -1,24 +1,13 @@
 node {
     def mvnHome
     stage('Preparation') {
-        // Get the Maven tool.     
-        mvnHome = tool 'Maven'
-        echo ${mvnHome}
-        echo 'Hello World'
-        //sh "'${mvnHome}//bin//mvn' -version"
+        echo 'Hello World'  
     }
     stage ('SCM') {
         checkout scm
     }
     stage('Build') {
-        sh "'${mvnHome}/bin/mvn' clean package -Pbundle -DskipTests"
-    }
-    stage('Test') {
-        sh "'${mvnHome}/bin/mvn' test"
-    }    
-    stage("Deploy"){
-        // Deploy to Artifactory
-        sh "'${mvnHome}/bin/mvn' deploy"
+        sh "mvn clean package -Pbundle -DskipTests"
     }
 
     stage("Archive") {
