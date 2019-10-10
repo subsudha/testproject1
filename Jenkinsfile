@@ -7,7 +7,8 @@ node {
         checkout scm
     }
     stage('Build') {
-        sh "mvn clean package -Pbundle -DskipTests"
+        echo 'Build stage'
+        mvn clean package -Pbundle -DskipTests
     }
 
     stage("Archive") {
