@@ -9,14 +9,14 @@ node {
         checkout scm
     }
     stage('Build') {
-        sh "'${mvnHome}/bin/mvn' clean package -Pbundle -DskipTests"
+        sh "'${mvnHome}/bin/mvn' --settings C://Users//subins//.m2//settings.xml clean package -Pbundle -DskipTests"
     }
     stage('Test') {
-        sh "'${mvnHome}/bin/mvn' test"
+        sh "'${mvnHome}/bin/mvn' --settings C://Users//subins//.m2//settings.xml test"
     }    
     stage("Deploy"){
         // Deploy to Artifactory
-        sh "'${mvnHome}/bin/mvn' deploy"
+        sh "'${mvnHome}/bin/mvn' --settings C://Users//subins//.m2//settings.xml deploy"
     }
 
     stage("Archive") {
