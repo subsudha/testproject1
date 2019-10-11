@@ -1,11 +1,27 @@
 node {
+    def mvnHome
+    stage('Preparation') {
+        // Get the Maven tool.     
+        mvnHome = tool 'Maven'
+        sh "'${mvnHome}/bin/mvn' -version"
+    }
+    stage ('SCM') {
+        checkout scm
+    }
     stage('Build') {
-        echo 'Building....'
+        sh "'${mvnHome}/bin/mvn' --settings settings.xml clean package -Pbundle -DskipTests"
     }
     stage('Test') {
-        echo 'Testing....'
+        sh "'${mvnHome}/bin/mvn' --settings settings.xml test"
+    }    
+    stage("Deploy"){
+        // Deploy to Artifactory
+        sh "'${mvnHome}/bin/mvn' --settings settings.xml deploy"
     }
-    stage('Deploy') {
-        echo 'Deploying....'
+
+    stage("Archive") {
+        archiveArtifacts artifacts: 'vro/workflows/target/*.zip', fingerprint: true
+        archiveArtifacts artifacts: 'vro/workflows/target/*.package', fingerprint: true
+        archiveArtifacts artifacts: 'vro/actions/target/*.package', fingerprint: true
     }
 }
