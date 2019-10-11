@@ -9,19 +9,13 @@ node {
         checkout scm
     }
     stage('Build') {
-        sh "'${mvnHome}/bin/mvn' --settings settings.xml clean package -Pbundle -DskipTests"
+        sh "'${mvnHome}/bin/mvn' --settings settings.xml clean package -Pbundle-with-installer -DskipTests"
     }
     stage('Test') {
         sh "'${mvnHome}/bin/mvn' --settings settings.xml test"
     }    
     stage("Deploy"){
         // Deploy to Artifactory
-        sh "'${mvnHome}/bin/mvn' --settings settings.xml deploy"
-    }
-
-    stage("Archive") {
-        archiveArtifacts artifacts: 'vro/workflows/target/*.zip', fingerprint: true
-        archiveArtifacts artifacts: 'vro/workflows/target/*.package', fingerprint: true
-        archiveArtifacts artifacts: 'vro/actions/target/*.package', fingerprint: true
+        sh "'${mvnHome}/bin/mvn' --settings settings.xml deploy -Pbundle"
     }
 }
